@@ -114,3 +114,36 @@ experiment:
 | Softmax | Standard attention used in the original Transformer. | 기본 트랜스포머에서 사용된 표준 어텐션 방식 |
 | Entmax | Introduces controlled sparsity for better interpretability. | 희소성을 부여하여 주의 집중을 더 명확히 함 |
 | Sparsemax	| Produces fully sparse attention distributions. | 완전 희소한 주의 분포를 생성함 |
+
+## 🧑‍💻 Citation | 인용 정보
+
+If you use this project in your research, please cite:
+이 프로젝트를 연구에 활용하신다면 아래와 같이 인용해 주세요.
+```latex
+@misc{vit_attention_comparative_2025,
+  author = {Jeon, Seongyoon and Lee, Jaewon and Park, Geumrin},
+  title = {A Comparative Study of Advanced Attention Mechanisms in Vision Transformers},
+  year = {2025},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/<your-username>/VIT_ATTENTION_COMPARATIVE}}
+}
+```
+
+## 🧩 To-Do | 향후 계획
+
+- [ ] **Expand dataset to ImageNet**  
+  *Currently, CIFAR-10 is used for quick verification, but future experiments will extend to the larger and more complex ImageNet dataset to evaluate generalization performance.*  
+  *(현재는 빠른 결과 확인을 위해 CIFAR-10 데이터셋을 사용했지만, 향후에는 더 복잡한 ImageNet 데이터셋으로 확장하여 모델의 일반화 성능을 검증할 예정입니다.)*
+
+- [ ] **Explore additional advanced attention mechanisms**  
+  *Plan to implement and compare other improved attention mechanisms such as Linear Attention, Performer, and Reformer.*  
+  *(Linear Attention, Performer, Reformer 등 다양한 어텐션 개선 기법을 추가로 구현하고 비교 실험할 예정입니다.)*
+
+- [ ] **Implement α-Entmax parameter tuning**  
+  *Optimize α values to analyze the trade-off between sparsity and interpretability.*  
+  *(희소성과 해석 가능성 간의 트레이드오프를 분석하기 위해 α 값을 미세 조정할 예정입니다.)*
+
+- [ ] **Integrate Grad-CAM for interpretability**  
+  *Visualize which image regions the model attends to under different attention mechanisms.*  
+  *(각 어텐션 메커니즘에서 모델이 주목하는 이미지 영역을 시각화하기 위해 Grad-CAM을 통합할 예정입니다.)*
