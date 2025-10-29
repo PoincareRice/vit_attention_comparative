@@ -107,3 +107,10 @@ experiment:
   exp_name: "exp_001"
   checkpoint_file: "experiments/exp_001/checkpoints/vit_entmax_epoch10.pth"
 ```
+
+## 🧠 Attention Mechanisms | 어텐션 메커니즘 종류
+| Type | Description | 설명 |
+|---|---|---|
+| Softmax | Standard attention used in the original Transformer. | 기본 트랜스포머에서 사용된 표준 어텐션 방식 |
+| Entmax | Introduces controlled sparsity for better interpretability. | 희소성을 부여하여 주의 집중을 더 명확히 함 |
+| Sparsemax	| Produces fully sparse attention distributions. | 완전 희소한 주의 분포를 생성함 |
