@@ -49,7 +49,7 @@ VIT_ATTENTION_COMPARATIVE/
 ```bash
 # Clone repository | 저장소 복제
 git clone https://github.com/PoincareRice/vit_attention_comparative.git
-cd VIT_ATTENTION_COMPARATIVE
+cd vit_attention_comparative
 
 # Create virtual environment (optional) | 가상환경 생성 (선택)
 conda create -n vit-env python=3.10 -y
@@ -84,3 +84,26 @@ Results are stored under experiments/<exp_name>/results/.
 저장된 체크포인트를 불러와 모델을 평가하고 어텐션 맵을 시각화합니다.
 결과는 experiments/<exp_name>/results/ 폴더에 저장됩니다.
 
+## 🧩 Configuration | 설정 파일 예시
+```yaml
+model:
+  base_model: "google/vit-base-patch16-224"
+  attention_type: "entmax"      # options: softmax, entmax, sparsemax
+  num_labels: 10
+
+training:
+  epochs: 10
+  learning_rate: 3e-5
+  weight_decay: 0.01
+  device: "cuda"
+
+data:
+  dataset: "CIFAR10"
+  image_size: 224
+  batch_size: 32
+  num_workers: 4
+
+experiment:
+  exp_name: "exp_001"
+  checkpoint_file: "experiments/exp_001/checkpoints/vit_entmax_epoch10.pth"
+```
