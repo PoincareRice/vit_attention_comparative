@@ -88,4 +88,4 @@ Results are stored under experiments/<exp_name>/results/.
 
 저장된 체크포인트를 불러와 모델을 평가하고 어텐션 맵을 시각화합니다.
 결과는 experiments/<exp_name>/results/ 폴더에 저장됩니다.
----
+
