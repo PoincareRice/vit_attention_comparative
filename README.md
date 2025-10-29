@@ -121,7 +121,7 @@ If you use this project in your research, please cite:
 이 프로젝트를 연구에 활용하신다면 아래와 같이 인용해 주세요.
 ```latex
 @misc{vit_attention_comparative_2025,
-  author = {Jeon, Seongyoon and Lee, Jaewon and Park, Geumrin},
+  author = {Jeon, Seongyoon, Lee, Jaewon and Park, Geumrin},
   title = {A Comparative Study of Advanced Attention Mechanisms in Vision Transformers},
   year = {2025},
   publisher = {GitHub},
