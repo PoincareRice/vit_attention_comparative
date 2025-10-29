@@ -29,9 +29,9 @@ def main():
 
     exp_name = cfg['experiment']['exp_name']
     checkpoint_dir = os.path.join("experiments", cfg['experiment']['exp_name'], "checkpoints")
-    results_dir = os.path.join("experiments", exp_name, "results")
+    log_dir = os.path.join("experiments", exp_name, "logs")
     os.makedirs(checkpoint_dir, exist_ok=True)
-    os.makedirs(results_dir, exist_ok=True)
+    os.makedirs(log_dir, exist_ok=True)
 
     train_losses, val_losses = [], []
 
@@ -84,13 +84,24 @@ def main():
     torch.save(model.state_dict(), save_path)
     print(f"✅ Saved checkpoint: {save_path}")
 
-    log_path = os.path.join(results_dir, "training_log.txt")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_text = (
+        f"[{timestamp}]\n"
+        f"Experiment: {cfg['experiment']['exp_name']} | "
+        f"Dataset: {cfg['data']['dataset']} | "
+        f"Model: {cfg['model']['base_model']} | "
+        f"Attention: {cfg['model']['attention_type']}\n"
+        f"Epoch {epoch+1} | Train Loss: {avg_train_loss:.4f} | "
+        f"Val Loss: {avg_val_loss:.4f} | Val Acc: {val_acc:.4f}\n"
+        f"LR: {cfg['training']['learning_rate']} | "
+        f"WD: {cfg['training']['weight_decay']} | "
+        f"Batch: {cfg['data']['batch_size']} | "
+        f"Device: {cfg['training']['device']}\n"
+        f"Checkpoint: {cfg['experiment']['checkpoint_file']}\n\n"
+    )
+    log_path = os.path.join(log_dir, "training_log.txt")
     with open(log_path, "a") as f:
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        f.write(f"[{timestamp}] Epoch {epoch+1} | "
-                f"Train Loss: {avg_train_loss:.4f} | "
-                f"Val Loss: {avg_val_loss:.4f} | "
-                f"Val Acc: {val_acc:.4f}\n")
+        f.write(log_text)
         
     # 전체 학습 곡선 저장
     import matplotlib.pyplot as plt
@@ -102,9 +113,9 @@ def main():
     plt.ylabel("Loss")
     plt.legend()
     plt.grid(True)
-    plt.savefig(os.path.join(results_dir, "loss_curve.png"))
+    plt.savefig(os.path.join(log_dir, f"[{timestamp}]loss_curve.png"))
     plt.close()
-    print(f"📈 Saved training curve to: {os.path.join(results_dir, 'loss_curve.png')}")
+    print(f"📈 Saved training curve to: {os.path.join(log_dir, f'[{timestamp}]loss_curve.png')}")
 
 if __name__ == "__main__":
     main()
