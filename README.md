@@ -2,7 +2,7 @@
 ### Comparative Analysis of Advanced Attention Mechanisms in Vision Transformers  
 **비전 트랜스포머(ViT)에서 고급 어텐션 메커니즘(Entmax, Sparsemax 등)을 비교 분석하는 프로젝트**
 
----
+-
 
 ## 📘 Overview | 개요
 
