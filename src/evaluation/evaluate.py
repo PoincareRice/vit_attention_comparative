@@ -1,3 +1,5 @@
+import os
+from datetime import datetime
 import torch
 import yaml
 import matplotlib.pyplot as plt
@@ -43,6 +45,27 @@ def evaluate_and_visualize():
 
     preds = torch.argmax(logits, dim=-1)
     acc   = (preds == labels).float().mean()
+
+    exp_name = cfg['experiment']['exp_name']
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    result_text = (
+        f"[{timestamp}]\n"
+        f"Experiment: {cfg['experiment']['exp_name']} | "
+        f"Dataset: {cfg['data']['dataset']} | "
+        f"Model: {cfg['model']['base_model']} | "
+        f"Attention: {cfg['model']['attention_type']}\n"
+        f"Epoch {cfg['training']['epochs']} | "
+        f"LR: {cfg['training']['learning_rate']} | "
+        f"WD: {cfg['training']['weight_decay']} | "
+        f"Batch: {cfg['data']['batch_size']} | "
+        f"Device: {cfg['training']['device']}\n"
+        f"Checkpoint: {cfg['experiment']['checkpoint_file']}\n"
+        f"Accuracy on batch: {acc:.4f}\n\n"
+    )
+    result_dir = os.path.join("experiments", exp_name, "results")
+    result_path = os.path.join(result_dir, "evaluation_log.txt")
+    with open(result_path, "a") as f:
+        f.write(result_text)
     print(f"Accuracy on batch: {acc:.4f}")
 
     # 어텐션 가중치 시각화 — 첫 배치의 첫 헤드
