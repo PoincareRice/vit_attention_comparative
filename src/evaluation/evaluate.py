@@ -27,7 +27,8 @@ def evaluate_and_visualize():
     _, test_loader = get_dataloaders()
     image_processor = AutoImageProcessor.from_pretrained(
         cfg['model']['base_model'],
-        do_rescale=False
+        do_rescale=False,
+        use_fast=True
     )
 
     # 배치 하나만 테스트

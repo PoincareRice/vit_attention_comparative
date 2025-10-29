@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 import torch
 import yaml
 from tqdm import tqdm
@@ -21,7 +22,8 @@ def main():
 
     image_processor = AutoImageProcessor.from_pretrained(
         cfg['model']['base_model'],
-        do_rescale=False
+        do_rescale=False,
+        use_fast=True
     )
     optimizer = torch.optim.AdamW(model.parameters(), lr=cfg['training']['learning_rate'], weight_decay=cfg['training']['weight_decay'])
 
@@ -84,8 +86,11 @@ def main():
 
     log_path = os.path.join(results_dir, "training_log.txt")
     with open(log_path, "a") as f:
-        f.write(f"Epoch {epoch+1} | Train Loss: {avg_train_loss:.4f} | "
-                f"Val Loss: {avg_val_loss:.4f} | Val Acc: {val_acc:.4f}\n")
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        f.write(f"[{timestamp}] Epoch {epoch+1} | "
+                f"Train Loss: {avg_train_loss:.4f} | "
+                f"Val Loss: {avg_val_loss:.4f} | "
+                f"Val Acc: {val_acc:.4f}\n")
         
     # 전체 학습 곡선 저장
     import matplotlib.pyplot as plt
@@ -100,8 +105,6 @@ def main():
     plt.savefig(os.path.join(results_dir, "loss_curve.png"))
     plt.close()
     print(f"📈 Saved training curve to: {os.path.join(results_dir, 'loss_curve.png')}")
-
-
 
 if __name__ == "__main__":
     main()
