@@ -132,18 +132,18 @@ If you use this project in your research, please cite:
 
 ## 🧩 To-Do | 향후 계획
 
-- [ ] **Expand dataset to ImageNet**  
-  *Currently, CIFAR-10 is used for quick verification, but future experiments will extend to the larger and more complex ImageNet dataset to evaluate generalization performance.*  
-  *(현재는 빠른 결과 확인을 위해 CIFAR-10 데이터셋을 사용했지만, 향후에는 더 복잡한 ImageNet 데이터셋으로 확장하여 모델의 일반화 성능을 검증할 예정입니다.)*
+- **Expand dataset to ImageNet**  
+  Currently, CIFAR-10 is used for quick verification, but future experiments will extend to the larger and more complex ImageNet dataset to evaluate generalization performance.
+  현재는 빠른 결과 확인을 위해 CIFAR-10 데이터셋을 사용했지만, 향후에는 더 복잡한 ImageNet 데이터셋으로 확장하여 모델의 일반화 성능을 검증할 예정입니다.
 
-- [ ] **Explore additional advanced attention mechanisms**  
-  *Plan to implement and compare other improved attention mechanisms such as Linear Attention, Performer, and Reformer.*  
-  *(Linear Attention, Performer, Reformer 등 다양한 어텐션 개선 기법을 추가로 구현하고 비교 실험할 예정입니다.)*
+- **Explore additional advanced attention mechanisms**  
+  Plan to implement and compare other improved attention mechanisms such as Linear Attention, Performer, and Reformer.
+  Linear Attention, Performer, Reformer 등 다양한 어텐션 개선 기법을 추가로 구현하고 비교 실험할 예정입니다.
 
-- [ ] **Implement α-Entmax parameter tuning**  
-  *Optimize α values to analyze the trade-off between sparsity and interpretability.*  
-  *(희소성과 해석 가능성 간의 트레이드오프를 분석하기 위해 α 값을 미세 조정할 예정입니다.)*
+- **Implement α-Entmax parameter tuning**  
+  Optimize α values to analyze the trade-off between sparsity and interpretability.
+  희소성과 해석 가능성 간의 트레이드오프를 분석하기 위해 α 값을 미세 조정할 예정입니다.
 
-- [ ] **Integrate Grad-CAM for interpretability**  
-  *Visualize which image regions the model attends to under different attention mechanisms.*  
-  *(각 어텐션 메커니즘에서 모델이 주목하는 이미지 영역을 시각화하기 위해 Grad-CAM을 통합할 예정입니다.)*
+- **Integrate Grad-CAM for interpretability**  
+  Visualize which image regions the model attends to under different attention mechanisms.
+  각 어텐션 메커니즘에서 모델이 주목하는 이미지 영역을 시각화하기 위해 Grad-CAM을 통합할 예정입니다.
