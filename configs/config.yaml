@@ -19,4 +19,4 @@ data:
 experiment:
   exp_name: "exp_001"
   attention_type: "entmax"
-  checkpoint_file: "experiments/exp_001/checkpoints/vit_softmax_epoch10.pth"
+  checkpoint_file: "experiments/exp_001/checkpoints/vit_entmax_epoch10.pth"

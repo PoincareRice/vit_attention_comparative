@@ -8,7 +8,7 @@ This repository provides a complete implementation for comparing **advanced atte
 It supports training, evaluation, and visualization of attention maps on **CIFAR-10**.
 
 이 저장소는 **Vision Transformer(ViT)** 에서 **Entmax, Sparsemax 등 고급 어텐션 메커니즘**을 비교 실험하기 위한 전체 구현을 제공합니다.  
-**CIFAR-10** 데이터셋을 기반으로 학습, 평가, 어텐션 맵 시각화를 지원합니다.
+**CIFAR-10** 데이터셋을 기반으로 학습, 평가를 지원합니다.
 
 ## 📂 Project Structure | 프로젝트 구조
 
@@ -81,8 +81,8 @@ bash ./bash_folder/evaluate.bash
 Evaluates a saved checkpoint and visualizes attention maps.
 Results are stored under experiments/<exp_name>/results/.
 
-저장된 체크포인트를 불러와 모델을 평가하고 어텐션 맵을 시각화합니다.
-결과는 experiments/<exp_name>/results/ 폴더에 저장됩니다.
+저장된 체크포인트를 불러와 모델을 평가합니다.
+결과는 experiments/<exp_name>/results/ 폴더에 저장하게 만들 예정입니다.
 
 ## 🧩 Configuration | 설정 파일 예시
 ```yaml
@@ -126,7 +126,7 @@ If you use this project in your research, please cite:
   year = {2025},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/<your-username>/VIT_ATTENTION_COMPARATIVE}}
+  howpublished = {\url{https://github.com/PoincareRice/vit_attention_comparative.git}}
 }
 ```
 
@@ -138,7 +138,7 @@ If you use this project in your research, please cite:
 
 - **Explore additional advanced attention mechanisms**  
   Plan to implement and compare other improved attention mechanisms such as Linear Attention, Performer, and Reformer.
-  Linear Attention, Performer, Reformer 등 다양한 어텐션 개선 기법을 추가로 구현하고 비교 실험할 예정입니다.
+  Linear Attention 등 다양한 어텐션 개선 기법을 추가로 구현하고 비교 실험할 예정입니다.
 
 - **Implement α-Entmax parameter tuning**  
   Optimize α values to analyze the trade-off between sparsity and interpretability.
