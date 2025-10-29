@@ -10,8 +10,6 @@ It supports training, evaluation, and visualization of attention maps on **CIFAR
 이 저장소는 **Vision Transformer(ViT)** 에서 **Entmax, Sparsemax 등 고급 어텐션 메커니즘**을 비교 실험하기 위한 전체 구현을 제공합니다.  
 **CIFAR-10** 데이터셋을 기반으로 학습, 평가, 어텐션 맵 시각화를 지원합니다.
 
----
-
 ## 📂 Project Structure | 프로젝트 구조
 
 ```
@@ -45,7 +43,6 @@ VIT_ATTENTION_COMPARATIVE/
 ├── tests/                     # Unit tests | 테스트 코드
 └── requirements.txt
 ```
----
 
 ## ⚙️ Installation | 설치 방법
 
@@ -64,7 +61,7 @@ source ./vit-env/bin/activate
 # Install dependencies | 필요한 패키지 설치
 pip install -r requirements.txt
 ```
----
+
 ## 🚀 Usage | 사용 방법
 
 ### Training | 학습 실행
