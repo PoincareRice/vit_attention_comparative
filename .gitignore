@@ -1,0 +1,8 @@
+data/
+experiments/
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+*.pth
+*.h5
+*.ckpt

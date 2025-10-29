@@ -1,0 +1,10 @@
+# python version: 3.10 
+# (ubuntu22.04, python3.10 -m venv vit-env)
+
+torch>=2.0
+torchvision
+transformers>=4.50.0
+entmax
+tqdm
+matplotlib
+PyYAML
