@@ -1,7 +1,7 @@
 # configs/config.yaml (기본 설정)
 model:
   base_model: "google/vit-base-patch16-224"
-  attention_type: "sparsemax"   # options: softmax, entmax, sparsemax
+  attention_type: "softmax"   # options: softmax, entmax, sparsemax
   num_labels: 10
 
 training:
@@ -18,5 +18,5 @@ data:
 
 experiment:
   exp_name: "exp_001"
-  attention_type: "sparsemax"
-  checkpoint_file: "experiments/exp_001/checkpoints/vit_sparsemax_epoch10.pth"
+  attention_type: "softmax"
+  checkpoint_file: "experiments/exp_001/checkpoints/vit_softmax_epoch10.pth"
