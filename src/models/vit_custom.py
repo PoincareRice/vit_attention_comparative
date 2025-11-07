@@ -1,10 +1,11 @@
 import torch
 import torch.nn as nn
 from transformers import ViTConfig, ViTModel, ViTForImageClassification
+from transformers.models.vit.modeling_vit import ViTSelfAttention
 
-from .attention.base_attention import SoftmaxAttention
-from .attention.entmax_attention import EntmaxAttention
-from .attention.sparsemax_attention import SparsemaxAttention
+from .attention.base_attention import SoftmaxAttention, replace_vit_attention_with_softmax
+from .attention.entmax_attention import EntmaxAttention, replace_vit_attention_with_entmax
+from .attention.sparsemax_attention import SparsemaxAttention, replace_vit_attention_with_sparsemax
 
 class ViTCustomClassifier(nn.Module):
     def __init__(self, base_model_name, attention_type='softmax', num_labels=10):
@@ -13,30 +14,40 @@ class ViTCustomClassifier(nn.Module):
         self.config = ViTConfig.from_pretrained(base_model_name, num_labels=num_labels)
         self.vit    = ViTModel.from_pretrained(base_model_name, config=self.config)
 
+        if attention_type == 'sparsemax':
+            self.vit = replace_vit_attention_with_sparsemax(self.vit)
+        elif attention_type == 'entmax':
+            self.vit = replace_vit_attention_with_entmax(self.vit)
+        else:
+            self.vit = replace_vit_attention_with_softmax(self.vit)
+
         hidden_size = self.config.hidden_size
         num_heads   = self.config.num_attention_heads
 
         # 커스터마이즈 어텐션 블록
-        if attention_type == 'entmax':
-            self.custom_attn = EntmaxAttention(hidden_size, num_heads)
-        elif attention_type == 'sparsemax':
-            self.custom_attn = SparsemaxAttention(hidden_size, num_heads)
-        else:
-            self.custom_attn = SoftmaxAttention(hidden_size, num_heads)
+        # if attention_type == 'entmax':
+        #     self.custom_attn = EntmaxAttention(hidden_size, num_heads)
+        # elif attention_type == 'sparsemax':
+        #     self.custom_attn = SparsemaxAttention(hidden_size, num_heads)
+        # else:
+        #     self.custom_attn = SoftmaxAttention(hidden_size, num_heads)
 
         # 분류 헤드
         self.classifier = nn.Linear(hidden_size, num_labels)
 
     def forward(self, pixel_values, labels=None):
         # 기본 ViT 임베딩/패치 → 마지막 Hidden states
-        vit_outputs = self.vit(pixel_values=pixel_values, output_hidden_states=False, output_attentions=False)
+        vit_outputs = self.vit(pixel_values=pixel_values, 
+                               output_hidden_states=False, 
+                               output_attentions=False)
         sequence_output = vit_outputs.last_hidden_state  # shape: [B, num_patches+1, hidden_size]
 
         # 커스터마이즈 어텐션 적용 (CLS 토큰 포함 전체 시퀀스)
-        attn_output, attn_weights = self.custom_attn(sequence_output)
+        # attn_output, attn_weights = self.custom_attn(sequence_output)
 
         # CLS 토큰 위치는 인덱스 0
-        cls_output = attn_output[:, 0, :]
+        # cls_output = attn_output[:, 0, :]
+        cls_output = sequence_output[:, 0, :]
 
         logits = self.classifier(cls_output)
 
@@ -45,4 +56,5 @@ class ViTCustomClassifier(nn.Module):
             loss_fct = nn.CrossEntropyLoss()
             loss = loss_fct(logits, labels)
 
-        return {'loss': loss, 'logits': logits, 'attn_weights': attn_weights}
+        # return {'loss': loss, 'logits': logits, 'attn_weights': attn_weights}
+        return {'loss': loss, 'logits': logits}
